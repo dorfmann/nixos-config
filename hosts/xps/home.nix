@@ -32,12 +32,8 @@
     thefuck
     git
 
-    qemu
-    libvirt
-    virt-manager
-
     (writeShellScriptBin "nixi" ''
-      sudo nixos-rebuild switch --flake ~/nixos#default
+      sudo nixos-rebuild switch --flake ~/nixos#xps
     '')
 
     (writeShellScriptBin "nixe" ''
@@ -52,7 +48,7 @@
     # # the Nix store. Activating the configuration will then make '~/.screenrc' a
     # # symlink to the Nix store copy.
     # ".screenrc".source = dotfiles/screenrc;
-    ".zshrc".source = ../dotfiles/zshrc;
+
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''
     #   org.gradle.console=verbose
