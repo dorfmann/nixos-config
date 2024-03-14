@@ -8,7 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.xps
+      inputs.home-manager.nixosModules.default
       ../../modules/printing.nix
       ../../modules/zsh.nix
     ];

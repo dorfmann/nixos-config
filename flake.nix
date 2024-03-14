@@ -29,7 +29,7 @@
         specialArgs = { inherit inputs; };
         modules = [
           ./hosts/xps/configuration.nix
-          inputs.home-manager.nixosModules.xps
+          inputs.home-manager.nixosModules.default
         ];
       };
 
