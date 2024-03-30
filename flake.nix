@@ -8,9 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, sops-nix, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs;
@@ -22,6 +24,7 @@
         modules = [
           ./hosts/default/configuration.nix
           inputs.home-manager.nixosModules.default
+          sops-nix.nixosModules.sops
         ];
       };
 
@@ -30,6 +33,7 @@
         modules = [
           ./hosts/xps/configuration.nix
           inputs.home-manager.nixosModules.default
+          sops-nix.nixosModules.sops
         ];
       };
 

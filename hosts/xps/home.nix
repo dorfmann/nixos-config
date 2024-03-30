@@ -1,11 +1,29 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
+
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+
+  sops = {
+    age.keyFile = "/home/rene/.config/sops/age/keys.txt"; # must have no password!
+    # It's also possible to use a ssh key, but only when it has no password:
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    secrets.test = {
+      path = "/home/rene/.ssh/config";
+    };
+  };
+
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "rene";
   home.homeDirectory = "/home/rene";
 
+  home.activation.setupEtc = config.lib.dag.entryAfter [ "writeBoundary" ] ''
+    /run/current-system/sw/bin/systemctl start --user sops-nix
+  '';
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -31,6 +49,8 @@
     bitwarden
     thefuck
     git
+
+    sops
 
     (writeShellScriptBin "nixi" ''
       sudo nixos-rebuild switch --flake ~/nixos#xps
