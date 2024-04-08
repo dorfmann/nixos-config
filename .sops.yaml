@@ -1,7 +1,9 @@
 keys:
+  - &default age1kzuj3nssduukunue5qk7hx7s7flvcedxqwncnz4swkw0kw0py5zq0rv928
   - &xps age109z849eur4yny9m7fqgz9u3hjr7rkeeycknjkytj9nwwtnaqj5cssd7cgz
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - age:
+      - *default
       - *xps

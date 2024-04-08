@@ -1,10 +1,23 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "rene";
   home.homeDirectory = "/home/rene";
+
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+
+  sops = {
+    age.keyFile = "/home/rene/.config/sops/age/keys.txt"; # must have no password!
+    # It's also possible to use a ssh key, but only when it has no password:
+    defaultSopsFile = ../../secrets/secrets.yaml;
+    secrets.test = {
+      path = "/home/rene/.ssh/config";
+    };
+  };
 
 
   # Let Home Manager install and manage itself.
@@ -20,8 +33,11 @@
   home.packages = with pkgs; [
     # pkgs.hello
     #(pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    nixpkgs-fmt
+
     firefox
+    vivaldi
+
+    nixpkgs-fmt
     kate
     discord
     vscode
@@ -30,11 +46,16 @@
     thunderbird
     bitwarden
     thefuck
+
     git
+    nodejs
+    sqlite
 
     qemu
     libvirt
     virt-manager
+
+    sops
 
     (writeShellScriptBin "nixi" ''
       sudo nixos-rebuild switch --flake ~/nixos#default
