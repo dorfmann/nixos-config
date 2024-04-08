@@ -9,8 +9,8 @@
   sops = {
     age.keyFile = "/home/rene/.config/sops/age/keys.txt"; # must have no password!
     # It's also possible to use a ssh key, but only when it has no password:
-    defaultSopsFile = ../../secrets/secrets.yaml;
-    secrets.test = {
+    defaultSopsFile = ../../secrets/default.yaml;
+    secrets.ssh_config = {
       path = "/home/rene/.ssh/config";
     };
   };

@@ -90,7 +90,7 @@
     isNormalUser = true;
     description = "Rene";
     initialPassword = "123";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "adbusers" ];
   };
 
   home-manager = {
@@ -174,6 +174,7 @@
     };
   };
 
+  programs.adb.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
