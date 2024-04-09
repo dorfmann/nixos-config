@@ -10,6 +10,7 @@
       ./hardware-configuration.nix
       ../../modules/printing.nix
       ../../modules/zsh.nix
+      ../../modules/docker.nix
     ];
 
   # Bootloader.
@@ -17,13 +18,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "rene-laptop"; # Define your hostname.
-
-  # sops = {
-  #   age.keyFile = "/home/rene/.config/sops/age/keys.txt"; # must have no password!
-  #   # It's also possible to use a ssh key, but only when it has no password:
-  #   defaultSopsFile = ../../secrets/secrets.yaml;
-  #   secrets.test = { };
-  # };
 
   # Enable networking
   networking.networkmanager.enable = true;

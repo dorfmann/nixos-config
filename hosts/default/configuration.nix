@@ -8,18 +8,11 @@
   imports =
     [
       ./hardware-configuration.nix
-      inputs.home-manager.nixosModules.default
       ../../modules/nvidia.nix
       ../../modules/printing.nix
       ../../modules/zsh.nix
+      ../../modules/docker.nix
     ];
-
-
-  #Rootless Docker     
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
