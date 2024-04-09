@@ -14,6 +14,13 @@
       ../../modules/zsh.nix
     ];
 
+
+  #Rootless Docker     
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
