@@ -61,6 +61,8 @@
 
     sops
 
+    ksshaskpass
+
     (writeShellScriptBin "nixi" ''
       sudo nixos-rebuild switch --flake ~/nixos#default
     '')
@@ -87,6 +89,8 @@
 
   home.sessionVariables = {
     # EDITOR = "emacs";
+    SSH_ASKPASS = ''${pkgs.ksshaskpass}/bin/ksshaskpass'';
+    SSH_ASKPASS_REQUIRE = "prefer";
   };
 
 
