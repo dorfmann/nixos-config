@@ -50,6 +50,7 @@
     thunderbird
     bitwarden
     thefuck
+    obsidian
 
     git
     nodejs
