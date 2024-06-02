@@ -20,6 +20,8 @@
 
   networking.hostName = "rene-computer"; # Define your hostname.
 
+  powerManagement.enable = true;
+
   # Enable networking
   networking.networkmanager.enable = true;
 
