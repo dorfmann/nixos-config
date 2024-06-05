@@ -1,5 +1,7 @@
-{ config, pkgs, inputs, ... }:
-
+{ config, pkgs, inputs, specialArgs, ... }:
+let
+  unstable = import specialArgs.inputs.unstable { config = config.nixpkgs.config // { allowUnfree = true; }; };
+in
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -32,30 +34,35 @@
     allowUnfree = true;
   };
 
+
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      sonarsource.sonarlint-vscode
+      dracula-theme.theme-dracula
+    ];
+  };
+
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     # pkgs.hello
     #(pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    firefox
-    vivaldi
+    unstable.firefox
 
     nixpkgs-fmt
     kate
     discord
-    vscode
     kdeconnect
     protonvpn-gui
     thunderbird
     bitwarden
     thefuck
     obsidian
-
+    direnv
     git
     nodejs
     sqlite
-
     qemu
     libvirt
     virt-manager
