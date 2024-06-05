@@ -8,6 +8,7 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../../modules/plasma.nix
       ../../modules/nvidia.nix
       ../../modules/printing.nix
       ../../modules/zsh.nix
@@ -43,19 +44,7 @@
     LC_TIME = "de_AT.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
-  programs.kdeconnect.enable = true;
-
-  # Configure keymap in X11
-  services.xserver = {
-    layout = "us";
-    xkbVariant = "";
-  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

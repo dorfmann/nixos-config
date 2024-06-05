@@ -1,7 +1,5 @@
-{ config, pkgs, inputs, specialArgs, ... }:
-let
-  unstable = import specialArgs.inputs.unstable { config = config.nixpkgs.config // { allowUnfree = true; }; };
-in
+{ config, pkgs, inputs, ... }:
+
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
@@ -48,7 +46,7 @@ in
   home.packages = with pkgs; [
     # pkgs.hello
     #(pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    unstable.firefox
+    inputs.unstable.legacyPackages.x86_64-linux.firefox
 
     nixpkgs-fmt
     kate
@@ -70,6 +68,7 @@ in
     sops
 
     ksshaskpass
+    #        texlive.combined.scheme-full
 
     (writeShellScriptBin "nixi" ''
       sudo nixos-rebuild switch --flake ~/nixos#default
