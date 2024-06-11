@@ -115,12 +115,7 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
+
 
 
 
@@ -132,8 +127,10 @@
 
   programs.java = {
     enable = true;
-    package = pkgs.jdk17;
+    package = pkgs.jdk8;
   }; #TODO move
+
+  services.envfs.enable = true;
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 

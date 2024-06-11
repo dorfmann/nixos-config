@@ -46,7 +46,8 @@
   home.packages = with pkgs; [
     # pkgs.hello
     #(pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-    inputs.unstable.legacyPackages.x86_64-linux.firefox
+    firefox
+    bottles
 
     nixpkgs-fmt
     kate
@@ -64,7 +65,7 @@
     qemu
     libvirt
     virt-manager
-
+    spotify
     sops
 
     ksshaskpass
